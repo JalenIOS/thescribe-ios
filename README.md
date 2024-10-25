@@ -1,6 +1,6 @@
 # thescribe-ios
 
-# Initial Mockup
+## Initial Mockup
 
 I have implemented the logic to get the recent breaking news from a third party news api and display it in a scrollable view as seen below.
 
