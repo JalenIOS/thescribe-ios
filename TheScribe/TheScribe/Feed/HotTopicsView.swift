@@ -10,6 +10,19 @@ import SwiftUI
 struct HotTopicsView: View {
     @Environment(FeedViewModel.self) private var feedViewModel: FeedViewModel
     
+    private func formatDate(dateStr: String) -> String {
+        let isoFormatter = ISO8601DateFormatter()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "h:mm a"
+        
+        if let date = isoFormatter.date(from: dateStr) {
+            return dateFormatter.string(from: date)
+        }
+        
+        return ""
+    }
+    
     var body: some View {
         VStack(spacing: 15) {
             HStack {
@@ -33,6 +46,7 @@ struct HotTopicsView: View {
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(feedViewModel.hotTopics, id: \.url) { article in
+                        
                         VStack{
                             if let urlString = article.urlToImage {
                                 AsyncImage(url: URL(string: urlString)) { image in
@@ -51,7 +65,7 @@ struct HotTopicsView: View {
                                 Text(article.title)
                                     .font(.body)
                                     .fontWeight(.bold)
-                                Text("12:26 PM By \(article.author ?? "")")
+                                Text("\(formatDate(dateStr: article.publishedAt)) By \(article.author ?? "")")
                                     .font(.footnote)
                                     .foregroundStyle(Color.gray)
                                 
