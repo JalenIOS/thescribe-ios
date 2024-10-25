@@ -1,3 +1,3 @@
 # thescribe-ios
 
-![Project Logo](images/thescribe-mockup.png)
+![Project Logo](Images/thescribe-mockup.png)
